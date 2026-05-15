@@ -8,4 +8,7 @@ vim.opt.softtabstop = 4
 vim.opt.clipboard = 'unnamedplus'
 
 
+vim.diagnostic.config({
+	virtual_text = true
+})
 
