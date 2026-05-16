@@ -15,13 +15,15 @@ return {
 
 			require('telescope').load_extension('fzf')
 
-			vim.keymap.set("n", "<leader>fh",
+			-- help
+			vim.keymap.set("n", "<leader>hf",
 				require('telescope.builtin').help_tags,
-				{ desc = "find help in nvim" }
+				{ desc = "find nvim help" }
 			)
+			-- files
 			vim.keymap.set("n", "<leader>ff",
 				require('telescope.builtin').find_files,
-				{ desc = "find files in workspace" }
+				{ desc = "find workspace files" }
 			)
 			vim.keymap.set("n", "<leader>fc",
 				function()
@@ -29,8 +31,16 @@ return {
 						cwd = vim.fn.stdpath("config")
 					}
 				end,
-				{ desc = "find files in nvim config" }
+				{ desc = "find nvim config files" }
 			)
+			-- buffers
+			vim.keymap.set("n", "<leader>bf", function()
+				require('telescope.builtin').buffers({
+					sort_lastused = true,
+					ignore_current_buffer = true,
+					show_all_buffers = false,
+				})
+			end, { desc = "find open buffers" })
 			require "config.telescope.multigrep".setup()
 		end
 	}
