@@ -11,4 +11,3 @@ vim.opt.clipboard = 'unnamedplus'
 vim.diagnostic.config({
 	virtual_text = true
 })
-
