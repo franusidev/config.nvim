@@ -6,7 +6,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 -- make the unnamed registry the system clipboard
 vim.opt.clipboard = 'unnamedplus'
-
+vim.opt.splitright = true
 -- enable virtual text for diagnostics
 vim.diagnostic.config({
 	virtual_text = true
