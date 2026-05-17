@@ -12,6 +12,9 @@ vim.diagnostic.config({
 	virtual_text = true
 })
 
+
+vim.o.winborder = "rounded"
+
 -- add a yank highlight
 vim.api.nvim_create_autocmd('TextYankPost', {
 	desc = 'Highlight when yanking text',
