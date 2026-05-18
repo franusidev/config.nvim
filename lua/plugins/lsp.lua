@@ -18,13 +18,17 @@ return {
 			vim.lsp.enable('lua_ls')
 			vim.lsp.enable('gopls')
 			vim.lsp.enable('yamlls')
-			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true }, function(obj)
-				vim.lsp.enable('powershell_es')
-				local path = obj.stdout and obj.stdout:gsub("%s+$", "")
-				vim.lsp.config('powershell_es', {
-					bundle_path = path
-				})
-			end)
+			vim.schedule(function()
+				local obj = vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true })
+				if obj.code == 0 then
+					local path = obj.stdout and obj.stdout:gsub("%s+$", "")
+					vim.lsp.enable('powershell_es')
+					vim.lsp.config('powershell_es', {
+						bundle_path = path
+					})
+				end
+			end
+			)
 			vim.lsp.enable('bash_ls')
 			-- this happens when an lsp is attached to a buffer
 			vim.api.nvim_create_autocmd('LspAttach', {
