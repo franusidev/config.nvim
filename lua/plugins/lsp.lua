@@ -15,10 +15,17 @@ return {
 			},
 		},
 		config = function()
-			-- config of lua_ls is handled by folke/lazydev.nvim to allow vim paths and completions
 			vim.lsp.enable('lua_ls')
-			-- config of lua_ls is handled by folke/lazydev.nvim to allow vim paths and completions
 			vim.lsp.enable('gopls')
+			vim.lsp.enable('yamlls')
+			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true }, function(obj)
+				vim.lsp.enable('powershell_es')
+				local path = obj.stdout and obj.stdout:gsub("%s+$", "")
+				vim.lsp.config('powershell_es', {
+					bundle_path = path
+				})
+			end)
+			vim.lsp.enable('bash_ls')
 			-- this happens when an lsp is attached to a buffer
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -44,5 +51,5 @@ return {
 				end,
 			})
 		end,
-	}
+	},
 }

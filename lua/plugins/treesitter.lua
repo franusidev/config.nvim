@@ -1,10 +1,10 @@
 return {
 	{
-	  'nvim-treesitter/nvim-treesitter',
-	  lazy = false,
-	  build = ':TSUpdate',
-	  config = function()
-		  require('nvim-treesitter').install { 'lua', 'go', 'gomod' }
-	  end,
+		'nvim-treesitter/nvim-treesitter',
+		lazy = false,
+		build = ':TSUpdate',
+		config = function()
+			require('nvim-treesitter').install { 'lua', 'go', 'gomod', 'yaml', 'powershell', 'bash' }
+		end,
 	}
 }
