@@ -2,19 +2,23 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"folke/lazydev.nvim",
-			ft = "lua", -- only load on lua files
-			opts = {
-				library = {
-					-- See the configuration section for more details
-					-- Load luvit types when the `vim.uv` word is found
-					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			{
+				"folke/lazydev.nvim",
+				ft = "lua", -- only load on lua files
+				opts = {
+					library = {
+						-- See the configuration section for more details
+						-- Load luvit types when the `vim.uv` word is found
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
 				},
 			},
 		},
 		config = function()
 			-- config of lua_ls is handled by folke/lazydev.nvim to allow vim paths and completions
 			vim.lsp.enable('lua_ls')
+			-- config of lua_ls is handled by folke/lazydev.nvim to allow vim paths and completions
+			vim.lsp.enable('gopls')
 			-- this happens when an lsp is attached to a buffer
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -40,5 +44,5 @@ return {
 				end,
 			})
 		end,
-	},
+	}
 }
