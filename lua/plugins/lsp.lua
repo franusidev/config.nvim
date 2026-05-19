@@ -18,7 +18,6 @@ return {
 			vim.lsp.enable('lua_ls')
 			vim.lsp.enable('gopls')
 			vim.lsp.enable('yamlls')
-			)
 			vim.lsp.config('yamlls', {
 				kubernetes = "*.yaml",
 				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
@@ -41,7 +40,7 @@ return {
 						bundle_path = path
 					})
 				end
-			end
+			end)
 			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true }, function(obj)
 				vim.lsp.enable('powershell_es')
 				local path = obj.stdout and obj.stdout:gsub("%s+$", "")
