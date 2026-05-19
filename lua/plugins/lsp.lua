@@ -29,6 +29,26 @@ return {
 				end
 			end
 			)
+			vim.lsp.config('yamlls', {
+				kubernetes = "*.yaml",
+				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+				["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+				["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+				["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+				["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] =
+				"*api*.{yml,yaml}",
+				["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
+				"*docker-compose*.{yml,yaml}",
+				["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] =
+				"*flow*.{yml,yaml}",
+			})
+			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true }, function(obj)
+				vim.lsp.enable('powershell_es')
+				local path = obj.stdout and obj.stdout:gsub("%s+$", "")
+				vim.lsp.config('powershell_es', {
+					bundle_path = path
+				})
+			end)
 			vim.lsp.enable('bash_ls')
 			-- this happens when an lsp is attached to a buffer
 			vim.api.nvim_create_autocmd('LspAttach', {
