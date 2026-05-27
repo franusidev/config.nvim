@@ -26,7 +26,7 @@ return {
 			vim.keymap.set("n", "<space>db", dap.toggle_breakpoint)
 
 			-- Eval var under cursor
-			vim.keymap.set("n", "<space>?", function()
+			vim.keymap.set("n", "<space>d?", function()
 				require("dapui").eval(nil, { enter = true })
 			end)
 

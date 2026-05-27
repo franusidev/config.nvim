@@ -8,19 +8,12 @@ return {
 			-- refer to the configuration section below
 		},
 		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
-			},
 		},
 		config = function()
 			require("which-key").add({
-				{ "<leader>f", group = "files", icon = { icon = "", color = "yellow" } }, -- add group for files operations
+				{ "<leader>f", group = "telescope", icon = { icon = "", color = "yellow" } }, -- add group for search operations
 				{ "<leader>b", group = "buffer", icon = { icon = "", color = "cyan" } }, -- add group for buffer operations
-				{ "<leader>h", group = "help", icon = { icon = "󰋖", color = "grey" } }, -- add group for help operations
+				{ "<leader>d", group = "debug", icon = { icon = "", color = "orange" } }, -- add group for buffer operations
 			})
 		end
 	}

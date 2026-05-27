@@ -31,13 +31,24 @@ return {
 				["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] =
 				"*flow*.{yml,yaml}",
 			})
-			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true }, function(obj)
-				vim.lsp.enable('powershell_es')
-				local path = obj.stdout and obj.stdout:gsub("%s+$", "")
-				vim.lsp.config('powershell_es', {
-					bundle_path = path
-				})
-			end)
+			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true },
+				function(obj)
+					if obj.code ~= 0 then
+						vim.notify(obj.stderr or "mise failed", vim.log.levels.ERROR)
+						return
+					end
+
+					local path = (obj.stdout or ""):gsub("%s+$", "")
+
+					-- vim.lsp must always run in the main thread
+					vim.schedule(function()
+						vim.lsp.config('powershell_es', {
+							bundle_path = path,
+						})
+						vim.lsp.enable('powershell_es')
+					end)
+				end
+			)
 			vim.lsp.enable('bash_ls')
 			-- this happens when an lsp is attached to a buffer
 			vim.api.nvim_create_autocmd('LspAttach', {

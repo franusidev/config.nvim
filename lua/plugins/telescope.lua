@@ -16,7 +16,7 @@ return {
 			require('telescope').load_extension('fzf')
 
 			-- help
-			vim.keymap.set("n", "<leader>hf",
+			vim.keymap.set("n", "<leader>fh",
 				require('telescope.builtin').help_tags,
 				{ desc = "find nvim help" }
 			)
@@ -34,14 +34,15 @@ return {
 				{ desc = "find nvim config files" }
 			)
 			-- buffers
-			vim.keymap.set("n", "<leader>bf", function()
+			vim.keymap.set("n", "<leader>fb", function()
 				require('telescope.builtin').buffers({
 					sort_lastused = true,
 					ignore_current_buffer = true,
 					show_all_buffers = false,
 				})
 			end, { desc = "find open buffers" })
-			require "config.telescope.multigrep".setup()
+			-- find live grep
+			vim.keymap.set("n", "<leader>fg", require('telescope.builtin').live_grep, { desc = "find in current files" })
 		end
 	}
 }
