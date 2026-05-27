@@ -31,16 +31,6 @@ return {
 				["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] =
 				"*flow*.{yml,yaml}",
 			})
-			vim.schedule(function()
-				local obj = vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true })
-				if obj.code == 0 then
-					local path = obj.stdout and obj.stdout:gsub("%s+$", "")
-					vim.lsp.enable('powershell_es')
-					vim.lsp.config('powershell_es', {
-						bundle_path = path
-					})
-				end
-			end)
 			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true }, function(obj)
 				vim.lsp.enable('powershell_es')
 				local path = obj.stdout and obj.stdout:gsub("%s+$", "")
