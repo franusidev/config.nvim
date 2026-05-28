@@ -14,6 +14,7 @@ return {
 				{ "<leader>f", group = "telescope", icon = { icon = "", color = "yellow" } }, -- add group for search operations
 				{ "<leader>b", group = "buffer", icon = { icon = "", color = "cyan" } }, -- add group for buffer operations
 				{ "<leader>d", group = "debug", icon = { icon = "", color = "orange" } }, -- add group for buffer operations
+				{ "<leader>t", group = "test", icon = { icon = "", color = "green" } }, -- add group for testing operations
 			})
 		end
 	}

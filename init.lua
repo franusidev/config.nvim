@@ -10,6 +10,9 @@ vim.opt.splitright = true
 
 vim.o.winborder = "rounded"
 
+vim.o.relativenumber = true
+vim.o.number = true
+
 -- add a yank highlight
 vim.api.nvim_create_autocmd('TextYankPost', {
 	desc = 'Highlight when yanking text',
@@ -21,6 +24,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 local map = vim.keymap.set
 
+
+
+-- =========================lsp.foldexpr()"
 -- =========================
 -- Window management
 -- =========================
