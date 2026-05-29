@@ -59,6 +59,32 @@ return {
 
 					if not client then return end
 
+					local map = function(lhs, rhs, desc)
+						vim.keymap.set('n', lhs, rhs, { buffer = ev.buf, desc = desc })
+					end
+
+					map('gd', vim.lsp.buf.definition, 'LSP definition')
+					map('gr', vim.lsp.buf.references, 'LSP references')
+					map('gI', vim.lsp.buf.implementation, 'LSP implementation')
+					map('K', vim.lsp.buf.hover, 'LSP hover')
+					map('<leader>lr', vim.lsp.buf.rename, 'LSP rename')
+					map('<leader>la', vim.lsp.buf.code_action, 'LSP code action')
+					map('<leader>lf', function()
+						vim.lsp.buf.format({ bufnr = ev.buf, timeout_ms = 1000 })
+					end, 'LSP format')
+					map('<leader>ls', vim.lsp.buf.document_symbol, 'LSP document symbols')
+					map('<leader>lS', vim.lsp.buf.workspace_symbol, 'LSP workspace symbols')
+
+					map(']d', vim.diagnostic.goto_next, 'Next diagnostic')
+					map('[d', vim.diagnostic.goto_prev, 'Previous diagnostic')
+					map('<leader>le', vim.diagnostic.open_float, 'Line diagnostics')
+					map('<leader>lq', vim.diagnostic.setqflist, 'Diagnostics quickfix')
+					map('<leader>ll', vim.diagnostic.setloclist, 'Diagnostics loclist')
+					map('<leader>ld', function()
+						local vt = vim.diagnostic.config().virtual_text
+						vim.diagnostic.config({ virtual_text = vt == false })
+					end, 'Toggle diagnostic virtual text')
+
 					-- if the lsp allows formatting
 					if not client:supports_method('textDocument/willSaveWaitUntil')
 						and client:supports_method('textDocument/formatting') then
