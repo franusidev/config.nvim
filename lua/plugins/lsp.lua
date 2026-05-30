@@ -34,7 +34,6 @@ return {
 			vim.system({ "mise", "where", "github:PowerShell/PowerShellEditorServices" }, { text = true },
 				function(obj)
 					if obj.code ~= 0 then
-						vim.notify(obj.stderr or "mise failed", vim.log.levels.ERROR)
 						return
 					end
 
