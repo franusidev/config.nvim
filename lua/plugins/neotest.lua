@@ -21,6 +21,15 @@ return {
 						"leoluz/nvim-dap-go",
 						opts = {},
 					},
+					{
+						"andythigpen/nvim-coverage",
+						version = "*",
+						config = function()
+							require("coverage").setup({
+								auto_reload = true,
+							})
+						end,
+					},
 				},
 			},
 		},
@@ -30,6 +39,7 @@ return {
 				go_test_args = {
 					"-v",
 					"-race",
+					"-count=1",
 					"-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
 				},
 			}
@@ -140,5 +150,27 @@ return {
 	{
 		"theHamsta/nvim-dap-virtual-text",
 		opts = {},
+	},
+	{
+		"rgroli/other.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("other-nvim").setup({
+				mappings = {
+					"golang",
+					"python",
+					"react",
+				},
+			})
+
+			vim.api.nvim_set_keymap("n", "<leader>%%", "<cmd>:Other<CR>",
+				{ noremap = true, silent = true, desc = "alternate to other" })
+			vim.api.nvim_set_keymap("n", "<leader>%h", "<cmd>:OtherSplit<CR>",
+				{ noremap = true, silent = true, desc = "alternate in hsplit" })
+			vim.api.nvim_set_keymap("n", "<leader>%v", "<cmd>:OtherVSplit<CR>",
+				{ noremap = true, silent = true, desc = "alternate in vsplit" })
+			vim.api.nvim_set_keymap("n", "<leader>%t", "<cmd>:Other test<CR>",
+				{ noremap = true, silent = true, desc = "alternate to test" })
+		end,
 	},
 }
