@@ -13,6 +13,9 @@ vim.filetype.add({ filename = { ["terragrunt.hcl"] = "hcl" } })
 
 vim.o.winborder = "rounded"
 
+-- show diagnostics inline (off by default since nvim 0.11)
+vim.diagnostic.config({ virtual_text = true })
+
 vim.o.relativenumber = true
 vim.o.number = true
 
