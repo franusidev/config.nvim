@@ -51,6 +51,7 @@ return {
 			vim.keymap.set("n", "<leader>fs", builtin.current_buffer_fuzzy_find, { desc = "find in current buffer" })
 			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "find word under cursor" })
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "find diagnostics" })
+			vim.keymap.set("n", "<leader>fS", builtin.lsp_document_symbols, { desc = "find LSP symbols in buffer" })
 			vim.keymap.set("n", "<leader>f/", function()
 				builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep in Open Buffers" })
 			end, { desc = "find in open buffers" })

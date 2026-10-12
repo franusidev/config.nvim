@@ -4,7 +4,7 @@ return {
 		lazy = false,
 		build = ':TSUpdate',
 		config = function()
-			require('nvim-treesitter').install { 'lua', 'go', 'gomod', 'yaml', 'powershell', 'bash' }
+			require('nvim-treesitter').install { 'lua', 'go', 'gomod', 'yaml', 'powershell', 'bash', 'terraform', 'hcl' }
 		end,
 	}
 }

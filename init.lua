@@ -8,6 +8,9 @@ vim.opt.softtabstop = 4
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.splitright = true
 
+-- terragrunt files are HCL, not terraform
+vim.filetype.add({ filename = { ["terragrunt.hcl"] = "hcl" } })
+
 vim.o.winborder = "rounded"
 
 vim.o.relativenumber = true

@@ -49,6 +49,8 @@ return {
 				end
 			)
 			vim.lsp.enable('bash_ls')
+			vim.lsp.enable('terraformls')
+			vim.lsp.enable('tflint')
 			-- this happens when an lsp is attached to a buffer
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('my.lsp', {}),
